@@ -1,9 +1,9 @@
 <template>
-  <div class="home">
-    <h1>Home</h1>
-  </div>
+  <h1>Produtos</h1>
 </template>
 
 <script>
 export default {};
 </script>
+
+<style></style>
