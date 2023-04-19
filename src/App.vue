@@ -1,6 +1,7 @@
 <template>
   <div>
     <Menu />
+    <hr />
   </div>
   <router-view />
 </template>
@@ -12,7 +13,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -23,6 +24,9 @@ export default {
 
 nav {
   padding: 30px;
+  hr {
+    border-bottom: 1.4px solid #2c3e50;
+  }
 }
 
 nav a {
