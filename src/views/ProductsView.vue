@@ -14,8 +14,25 @@
         </span>
       </template>
     </Toolbar>
-    <DataTable :value="products" tableStyle="min-width: 50rem">
+    <DataTable
+      :value="products"
+      dataKey="id"
+      ref="dt"
+      :paginator="true"
+      :rows="10"
+      :filters="filters"
+      paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+      :rowsPerPageOptions="[5, 10, 25]"
+      currentPageReportTemplate="Página {first} de {last} de {totalRecords} registros"
+    >
       <Column field="id" header="id"></Column>
+      <Column field="name" header="Nome"></Column>
+      <Column field="amount" header="Quantidade"></Column>
+      <Column field="price" header="Preço">
+        <template #body="slotProps">
+          R$ {{ slotProps.data.price }}
+        </template></Column
+      >
     </DataTable>
   </Panel>
 </template>
