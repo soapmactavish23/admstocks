@@ -1,9 +1,9 @@
 <template>
   <Panel header="Produtos">
     <Toolbar>
-      <template #start>
+      <!-- <template #start>
         <Button label="Novo" class="p-button-success" icon="pi pi-plus" />
-      </template>
+      </template> -->
       <template #end>
         <span class="p-input-icon-left">
           <i class="pi pi-search" />
