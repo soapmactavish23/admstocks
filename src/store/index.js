@@ -1,23 +1,57 @@
+import axios from "axios";
 import { createStore } from "vuex";
 
-export default createStore({
+const categories = {
   state: {
-    count: 0,
+    categories: [],
+  },
+};
+
+const products = {
+  state: {
     products: [],
   },
-  getters: {},
   mutations: {
-    increments(state) {
-      state.count++;
-    },
-    addProducts(state, payload) {
-      state.products.push(payload);
+    getProductsM(state, payload) {
+      state.products = payload;
     },
   },
   actions: {
-    addProdutos(context) {
-      context.commit("addProducts");
+    getProducts({ commit }) {
+      axios.get("http://localhost:8080/products").then((res) => {
+        commit("getProductsM", res.data);
+      });
     },
   },
-  modules: {},
+};
+
+const store = createStore({
+  modules: {
+    categories,
+    products,
+  },
 });
+
+export default store;
+
+// export default createStore({
+//   state: {
+//     count: 0,
+//     products: [],
+//   },
+//   getters: {},
+//   mutations: {
+//     increments(state) {
+//       state.count++;
+//     },
+//     addProducts(state, payload) {
+//       state.products.push(payload);
+//     },
+//   },
+//   actions: {
+//     addProdutos(context) {
+//       context.commit("addProducts");
+//     },
+//   },
+//   modules: {},
+// });

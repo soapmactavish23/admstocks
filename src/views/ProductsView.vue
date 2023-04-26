@@ -15,7 +15,7 @@
       </template>
     </Toolbar>
     <DataTable
-      :value="products"
+      :value="products.products"
       dataKey="id"
       ref="dt"
       :paginator="true"
@@ -30,7 +30,7 @@
       <Column field="amount" header="Quantidade"></Column>
       <Column field="price" header="Preço">
         <template #body="slotProps">
-          R$ {{ slotProps.data.price }}
+          R$ {{ slotProps.data.price.toFixed(2) }}
         </template></Column
       >
     </DataTable>
@@ -40,15 +40,15 @@
 <script>
 import { FilterMatchMode } from "primevue/api";
 
-import { products } from "../data/data";
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      products,
       filters: {},
     };
   },
   created() {
+    this.getProducts();
     this.initFilters();
   },
   methods: {
@@ -57,6 +57,10 @@ export default {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
       };
     },
+    ...mapActions(["getProducts"]),
+  },
+  computed: {
+    ...mapState(["products"]),
   },
 };
 </script>
