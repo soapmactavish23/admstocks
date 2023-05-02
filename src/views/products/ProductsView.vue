@@ -57,7 +57,7 @@ export default {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
       };
     },
-    ...mapActions(["getProducts"]),
+    ...mapActions("products", ["getProducts"]),
   },
   computed: {
     ...mapState(["products"]),
