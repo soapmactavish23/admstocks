@@ -20,7 +20,7 @@ const routes = [
   {
     path: "/categories",
     name: "categories",
-    component: () => import("../views/CategoriesView.vue"),
+    component: () => import("../views/categories/CategoriesView.vue"),
   },
 ];
 

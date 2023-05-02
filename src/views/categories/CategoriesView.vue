@@ -15,7 +15,7 @@
       </template>
     </Toolbar>
     <DataTable
-      :value="list"
+      :value="categories.categories"
       dataKey="id"
       ref="dt"
       :paginator="true"
@@ -33,7 +33,7 @@
 
 <script>
 import { FilterMatchMode } from "primevue/api";
-import axios from "axios";
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
@@ -42,7 +42,7 @@ export default {
   },
   created() {
     this.initFilters();
-    this.findAll();
+    this.getCategories();
   },
   methods: {
     initFilters() {
@@ -50,11 +50,10 @@ export default {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
       };
     },
-    findAll() {
-      axios.get("http://localhost:8080/categories").then((res) => {
-        this.list = res.data;
-      });
-    },
+    ...mapActions(["getCategories"]),
+  },
+  computed: {
+    ...mapState(["categories"]),
   },
 };
 </script>
