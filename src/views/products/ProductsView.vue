@@ -1,9 +1,14 @@
 <template>
   <Panel header="Produtos">
     <Toolbar>
-      <!-- <template #start>
-        <Button label="Novo" class="p-button-success" icon="pi pi-plus" />
-      </template> -->
+      <template #start>
+        <Button
+          label="Novo"
+          class="p-button-success"
+          icon="pi pi-plus"
+          @click="openNew"
+        />
+      </template>
       <template #end>
         <span class="p-input-icon-left">
           <i class="pi pi-search" />
@@ -58,6 +63,9 @@ export default {
       };
     },
     ...mapActions("products", ["getProducts"]),
+    openNew() {
+      this.$router.push("/products-form");
+    },
   },
   computed: {
     ...mapState(["products"]),
