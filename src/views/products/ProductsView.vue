@@ -38,6 +38,22 @@
           R$ {{ slotProps.data.price.toFixed(2) }}
         </template></Column
       >
+      <Column header="Ações">
+        <template #body="slotProps">
+          <Button
+            icon="pi pi-pencil"
+            class="p-button-rounded p-button-success mr-2"
+            @click="showUpdate(slotProps.data)"
+            v-tooltip.top="'CLIQUE PARA ATUALIZAR'"
+          />
+          <Button
+            icon="pi pi-trash"
+            class="p-button-rounded p-button-warning mr-2"
+            @click="showRemove(slotProps.data)"
+            v-tooltip.top="'CLIQUE PARA REMOVER'"
+          />
+        </template>
+      </Column>
     </DataTable>
   </Panel>
 </template>
@@ -65,6 +81,12 @@ export default {
     ...mapActions("products", ["getProducts"]),
     openNew() {
       this.$router.push("/products-form");
+    },
+    showUpdate(obj) {
+      this.$router.push(`/products-form?id=${obj.id}`);
+    },
+    showDelete(obj) {
+      console.log(obj);
     },
   },
   computed: {

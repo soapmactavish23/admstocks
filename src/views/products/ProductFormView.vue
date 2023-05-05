@@ -9,20 +9,42 @@
           <div class="p-fluid text-left">
             <div class="field">
               <label for="description">Descrição</label>
-              <InputText v-model="form.name" id="description" placeholder="Digite a descrição" required />
+              <InputText
+                v-model="form.name"
+                id="description"
+                placeholder="Digite a descrição"
+                required
+              />
             </div>
             <div class="field">
               <label for="quantity">Quantidade</label>
-              <InputText v-model="form.amount" id="quantity" placeholder="Digite a quantidade" type="number" required />
+              <InputText
+                v-model="form.amount"
+                id="quantity"
+                placeholder="Digite a quantidade"
+                type="number"
+                required
+              />
             </div>
             <div class="field">
               <label for="price">Preço</label>
-              <InputText id="price" v-model="form.price" placeholder="Digite o preço" type="decimal" required />
+              <InputText
+                id="price"
+                v-model="form.price"
+                placeholder="Digite o preço"
+                type="decimal"
+                required
+              />
             </div>
           </div>
         </template>
         <template #footer>
-          <Button icon="pi pi-check" label="Salvar" class="p-button-success" type="submit" />
+          <Button
+            icon="pi pi-check"
+            label="Salvar"
+            class="p-button-success"
+            type="submit"
+          />
         </template>
       </Card>
     </form>
@@ -30,24 +52,29 @@
 </template>
 
 <script>
-import Product from "./model/product"
-import { mapActions } from "vuex"
+import Product from "./model/product";
+import { mapActions } from "vuex";
 
 export default {
   data() {
     return {
       form: new Product(),
+    };
+  },
+  created() {
+    if (this.$route.query.id) {
+      this.form.id = this.$route.query.id;
     }
   },
   methods: {
-    ...mapActions('products', ['addProducts']),
+    ...mapActions("products", ["addProducts"]),
     send() {
       this.addProducts(this.form).then(() => {
         alert("Salvo com sucesso!");
         this.form = new Product();
       });
-    }
-  }
+    },
+  },
 };
 </script>
 

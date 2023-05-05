@@ -1,7 +1,8 @@
 export default class Product {
-    constructor() {
-        this.name = null;
-        this.amount = null;
-        this.price = null;
-    }
+  constructor() {
+    this.id = null;
+    this.name = null;
+    this.amount = null;
+    this.price = null;
+  }
 }
