@@ -65,6 +65,7 @@ export default {
     if (this.$route.query.id) {
       this.form.id = this.$route.query.id;
       this.findProductById(this.form.id);
+      this.form = this.products.products[0];
     }
   },
   computed: {
