@@ -53,7 +53,7 @@
 
 <script>
 import Product from "./model/product";
-import { mapActions } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 export default {
   data() {
@@ -64,10 +64,14 @@ export default {
   created() {
     if (this.$route.query.id) {
       this.form.id = this.$route.query.id;
+      this.findProductById(this.form.id);
     }
   },
+  computed: {
+    ...mapState(["products"]),
+  },
   methods: {
-    ...mapActions("products", ["addProducts"]),
+    ...mapActions("products", ["addProducts", "findProductById"]),
     send() {
       this.addProducts(this.form).then(() => {
         alert("Salvo com sucesso!");
