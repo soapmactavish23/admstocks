@@ -17,6 +17,12 @@ export const addProducts = ({ commit }, add) => {
 
 export const findProductById = ({ commit }, id) => {
   axios.get(`http://localhost:8080/products/${id}`).then((res) => {
-    commit(types.FIND_PRODUCTS, res);
+    commit(types.FIND_PRODUCTS, res.data);
+  });
+};
+
+export const updateProducts = ({ commit }, add) => {
+  axios.put(`http://localhost:8080/products/${add.id}`, add).then((res) => {
+    commit(types.UPDATE_PRODUCTS, res.data);
   });
 };
