@@ -72,12 +72,24 @@ export default {
     ...mapState(["products"]),
   },
   methods: {
-    ...mapActions("products", ["addProducts", "findProductById"]),
+    ...mapActions("products", [
+      "addProducts",
+      "updateProducts",
+      "findProductById",
+    ]),
     send() {
-      this.addProducts(this.form).then(() => {
-        alert("Salvo com sucesso!");
-        this.form = new Product();
-      });
+      if (this.form.id) {
+        this.addProducts(this.form).then(() => {
+          alert("Salvo com sucesso!");
+          this.form = new Product();
+          this.$router.push("/products");
+        });
+      } else {
+        this.updateProducts(this.form).then(() => {
+          alert("Salvo com sucesso!");
+          this.$router.push("/products");
+        });
+      }
     },
   },
 };
