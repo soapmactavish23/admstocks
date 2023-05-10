@@ -26,3 +26,9 @@ export const updateProducts = ({ commit }, add) => {
     commit(types.UPDATE_PRODUCTS, res.data);
   });
 };
+
+export const deleteProducts = ({ commit }, id) => {
+  axios.delete(`http://localhost:8080/products/${id}`).then((res) => {
+    commit(types.DELETE_PRODUCTS, res);
+  });
+};

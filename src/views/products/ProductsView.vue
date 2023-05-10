@@ -49,7 +49,7 @@
           <Button
             icon="pi pi-trash"
             class="p-button-rounded p-button-warning mr-2"
-            @click="showRemove(slotProps.data)"
+            @click="remove(slotProps.data)"
             v-tooltip.top="'CLIQUE PARA REMOVER'"
           />
         </template>
@@ -78,15 +78,17 @@ export default {
         global: { value: null, matchMode: FilterMatchMode.CONTAINS },
       };
     },
-    ...mapActions("products", ["getProducts"]),
+    ...mapActions("products", ["getProducts", "deleteProducts"]),
     openNew() {
       this.$router.push("/products-form");
     },
     showUpdate(obj) {
       this.$router.push(`/products-form?id=${obj.id}`);
     },
-    showDelete(obj) {
-      console.log(obj);
+    remove(obj) {
+      this.deleteProducts(obj.id).then(() => {
+        this.getProducts();
+      });
     },
   },
   computed: {

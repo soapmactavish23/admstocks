@@ -79,14 +79,14 @@ export default {
     ]),
     send() {
       if (this.form.id) {
-        this.addProducts(this.form).then(() => {
+        this.updateProducts(this.form).then(() => {
           alert("Salvo com sucesso!");
-          this.form = new Product();
           this.$router.push("/products");
         });
       } else {
-        this.updateProducts(this.form).then(() => {
+        this.addProducts(this.form).then(() => {
           alert("Salvo com sucesso!");
+          this.form = new Product();
           this.$router.push("/products");
         });
       }
